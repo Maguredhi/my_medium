@@ -30,6 +30,8 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    @story.destroy
+    redirect_to stories_path, notice: '故事已刪除'
   end
 
   private
