@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
   def record_not_found
     render file: "#{Rails.root}/public/404.html",
-           status: 'not_found',
+           status: :not_found,
            layout: false
   end
 end
