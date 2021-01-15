@@ -11,6 +11,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar, '上傳圖片' %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  <%= avatar(current_user) %>
+
+  <div class="field">
     <%= f.label :intro, '個人簡介' %><br />
     <%= f.text_area :intro, class: 'textarea', rows: 5 %>
   </div>
