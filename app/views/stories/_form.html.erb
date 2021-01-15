@@ -1,4 +1,10 @@
-<%= form_with model: story do |form| %>
+<% if story.errors.any? %>
+  <div class="notification is-danger">
+    <%= story.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+<%= form_with model: story, local: true do |form| %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, class: 'input is-primary' %>
@@ -11,6 +17,7 @@
 
   <div class="field">
     <%= form.submit '儲存草稿', name: 'save_as_draft', class: 'button' %>
-    <%= form.submit '發布文章', name: 'publish', class: 'button is-primary' %>
+    <%= form.submit '發布文章', name: 'publish', class: 'button is-primary' if story.may_publish? %>
+    <%= form.submit '下架文章', name: 'unpublish', class: 'button is-danger' if story.may_unpublish? %>
   </div>
 <% end %>
