@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'aasm', '~> 5.1', '>= 5.1.1'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem 'babosa', '~> 1.0', '>= 1.0.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
