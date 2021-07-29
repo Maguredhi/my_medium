@@ -1,0 +1,12 @@
+<h1 class="title">Stories</h1>
+
+<% @stories.each do |story| %>
+  <h2 class="title"><%= story.title %></h2>
+  <p><%= story.content %></p>
+  <p>
+    Last Updated: <%= time_ago_in_words(story.updated_at) %>
+    <%= link_to 'Edit', edit_story_path(story), class: 'button is-text is-small' %>
+    <%= link_to 'Delete', story, method: 'delete', class: 'button is-danger is-small', data: { confirm: 'Are You Sure?' } %>
+  </p>
+  <hr>
+<% end %>

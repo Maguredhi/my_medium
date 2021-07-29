@@ -1,0 +1,15 @@
+<%= form_with model: story do |form| %>
+  <div class="field">
+    <%= form.label :title, 'Title' %>
+    <%= form.text_field :title, class: 'input is-primary is-medium' %>
+  </div>
+  <div class="field">
+    <%= form.label :content, 'Content' %>
+    <%= form.text_area :content, rows: 10, class: 'textarea is-primary is-medium' %>
+  </div>
+
+  <div class="field">
+    <%= form.submit 'Save Draft', class: 'button is-light' %>
+    <%= form.submit 'New Story', class: 'button is-primary' %>
+  </div>
+<% end %>
