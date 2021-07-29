@@ -24,11 +24,17 @@ class StoriesController < ApplicationController
   
   def update
     if @story.update(story_params)
-      redirect_to stories_path, notice: 'Edit Success!'
+      redirect_to stories_path, notice: 'Story Edit Success!'
     else
       render :edit
     end
   end
+
+  def destroy
+    @story.destroy
+    redirect_to stories_path, notice: 'Story Destroy Success!'
+  end
+  
 
   private
   def find_story
