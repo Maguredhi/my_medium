@@ -1,3 +1,10 @@
+<% if story.errors.any? %>
+  <div class="notification is-danger">
+    <%= story.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+
 <%= form_with model: story do |form| %>
   <div class="field">
     <%= form.label :title, 'Title' %>
@@ -9,7 +16,8 @@
   </div>
 
   <div class="field">
-    <%= form.submit 'Save Draft', class: 'button is-light' %>
-    <%= form.submit 'New Story', class: 'button is-primary' %>
+    <%= form.submit 'Save Draft', name: 'save_as_draft', class: 'button is-light' %>
+    <%= form.submit 'Publish', name: 'publish', class: 'button is-primary' if story.may_publish? %>
+    <%= form.submit 'Unpublish', name: 'unpublish', class: 'button is-danger' if story.may_unpublish? %>
   </div>
 <% end %>

@@ -1,7 +1,11 @@
 <h1 class="title">Stories</h1>
 
 <% @stories.each do |story| %>
-  <h2 class="title"><%= story.title %></h2>
+  <h2 class="title">
+    <%= link_to story.title, edit_story_path(story), class: 'has-text-grey-darker' %>
+    <%= content_tag :span, 'Published', class: 'tag is-primary' if story.published? %>
+    <%= content_tag :span, 'Unpublished', class: 'tag is-light' if story.draft? %>
+  </h2>
   <p><%= story.content %></p>
   <p>
     Last Updated: <%= time_ago_in_words(story.updated_at) %>
