@@ -12,6 +12,14 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar %><br />
+    <div class="control">
+      <%= f.file_field :avatar, class: '' %>
+    </div>
+    <%= avatar(current_user) %>
+  </div>
+
+  <div class="field">
     <%= f.label :intro %><br />
     <div class="control">
       <%= f.text_area :intro, class: 'textarea is-medium', row: 5 %>
