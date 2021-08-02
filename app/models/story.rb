@@ -6,8 +6,9 @@ class Story < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
 
+  ## 預設撈出無軟刪除的 story
   default_scope { where(deleted_at: nil) }
-
+  ## 複寫 destroy action 為軟刪除
   def destroy
     update(deleted_at: Time.now)
   end
@@ -30,6 +31,7 @@ class Story < ApplicationRecord
   end
 
   private
+  ## 修改 URL 為 story title，若同名加上亂碼
   def slug_candidate
     [
       :title,
