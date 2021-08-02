@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   }
 
   resources :stories
+  ## /@username/title_id
+  get '@:username/:story_id', to: 'pages#show', as: 'story_page'
+
+  get '@:username', to: 'pages#user', as: 'user_page'
 
   root 'pages#index'
 end
