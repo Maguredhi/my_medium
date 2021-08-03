@@ -50,7 +50,6 @@ class StoriesController < ApplicationController
     @story.destroy
     redirect_to stories_path, notice: 'Story Destroy Success!'
   end
-  
 
   private
   def find_story
@@ -58,7 +57,7 @@ class StoriesController < ApplicationController
   end
   
   def story_params
-    params.require(:story).permit(:title, :content)
+    params.require(:story).permit(:title, :content, :cover_image)
   end
-  
+
 end
