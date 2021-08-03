@@ -10,14 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- * require_tree .
- *= require stories
+ *= require_tree .
  *= require_self
  */
 
- .navbar-link {
-   .user-avatar {
-     border-radius: 50%;
-     margin-right: 10px;
-   }
- }
