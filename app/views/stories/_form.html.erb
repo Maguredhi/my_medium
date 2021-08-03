@@ -7,6 +7,11 @@
 
 <%= form_with model: story do |form| %>
   <div class="field">
+    <%= image_tag story.cover_image.variant(resize: '800x600'), class: 'cover-image' if story.cover_image.attached? %>
+    <%= form.label :cover_image, 'CoverImage' %>
+    <%= form.file_field :cover_image %>
+  </div>
+  <div class="field">
     <%= form.label :title, 'Title' %>
     <%= form.text_field :title, class: 'input is-primary is-medium' %>
   </div>
