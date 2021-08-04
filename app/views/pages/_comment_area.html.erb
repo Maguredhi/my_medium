@@ -1,0 +1,12 @@
+<section class="comment-editor">
+  <% if user_signed_in? %>
+    <!-- form_with 預設是 remote: true ，AJAX 會在背後送資料，不會刷新頁面 -->
+    <% form_with model: Comment.new, url: story_comments_path(story), remote: true do |form| %>
+      <%= form.text_area :content, row: 5, class:'textarea is-small' %>
+      <%= form.button 'Submit', class:'button is-primary is-fullwidth' %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Please login', new_user_session_path, class:'button is-success' %>
+    <%= link_to 'Sign Up', new_user_registration_path, class:'button is-info' %>
+  <% end %>
+</section>

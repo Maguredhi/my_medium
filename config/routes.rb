@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :stories
+  resources :stories do
+    resources :comments, only: [:create]
+  end
+
   ## /@username/title_id
   get '@:username/:story_id', to: 'pages#show', as: 'story_page'
 

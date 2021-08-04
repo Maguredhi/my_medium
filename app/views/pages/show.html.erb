@@ -21,12 +21,7 @@
     <section class="comments">
       <h2>留言</h2>
 
-      <section class="comment-editor">
-        <form action="" method="post">
-          <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
-          <button type="submit" class="button is-primary is-fullwidth">送出</button>
-        </form>
-      </section>
+      <%= render 'comment_area', story: @stroy %>
 
       <section>
         <article class="comment">
