@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_story, only: [:create]
 
+  def show
+    @comments = @story.comments.order(id: :desc)
+  end
+
   def create
     @comment = @story.comments.new(comment_params)
     @comment.user = current_user
