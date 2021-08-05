@@ -14,7 +14,10 @@
         <%= simple_format(@story.content) %>
       </p>
       <footer>
-        拍手 0
+        <%= link_to '#', class: 'clap-button is-size-4 has-text-primary' do %>
+          <i class="far fa-thumbs-up"></i>
+          <span class="clap-count">0</span>
+        <% end %>
       </footer>
     </article>
     <hr>
