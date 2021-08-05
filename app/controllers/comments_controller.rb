@@ -2,17 +2,11 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_story, only: [:create]
 
-  def show
-    @comments = @story.comments.order(id: :desc)
-  end
-
   def create
     @comment = @story.comments.new(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      render js: "alert('ok')"
-    else
+    unless @comment.save
       render js: "alert('error')"
     end
   end

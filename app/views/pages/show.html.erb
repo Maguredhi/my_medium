@@ -21,9 +21,9 @@
     <section class="comments">
       <h2>留言</h2>
 
-      <%= render partial: 'comment_area', locals: { story: @story, comment: @comment } %>
+      <%= render 'comment_area', story: @story, comment: @comment %>
 
-      <section class="comment list">
+      <section class="comment-list">
         <%= render partial: 'comment', collection: @comments %>
       </section>
     </section>

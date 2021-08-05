@@ -1,0 +1,9 @@
+// 利用 AJAX 需要用 var，可做重複宣告
+// 用 let 會因作用域內重複宣告而報錯
+var list = document.querySelector('section.comment-list')
+// 我只需要塞入最新的那筆，所以 render 不需要用 collection，也只需要撈一筆 @comment 而不是 @comments
+var renderContent = "<%= j(render 'pages/comment', comment: @comment) %>"
+// 在 Controller 有對寫入的 params 做 permit，所以可放心用 innerHTML
+list.innerHTML = renderContent + list.innerHTML
+
+document.querySelector('form.comment_form').reset()
