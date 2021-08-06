@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:clap]
   before_action :find_story, only: [:edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:clap]
 
   def index
     @stories = current_user.stories.order(created_at: :desc)
@@ -13,6 +14,7 @@ class StoriesController < ApplicationController
   def create
     @story = current_user.stories.new(story_params)
     # @story.status = 'published' if params[:publish]
+    # 改用 AASM 狀態機來 create
     @story.publish! if params[:publish]
 
     if @story.save
@@ -49,6 +51,17 @@ class StoriesController < ApplicationController
   def destroy
     @story.destroy
     redirect_to stories_path, notice: 'Story Destroy Success!'
+  end
+
+  def clap
+    if user_signed_in?
+      story = Story.friendly.find(params[:id])
+      # 用 increment! 方法直接對 table 欄位加1
+      story.increment!(:clap)
+      render json: {status: story.clap}
+    else
+      render json: {status: "sign_in_first"}
+    end
   end
 
   private
