@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  # 注意 expect預計 與 except除了 的差異
   before_action :authenticate_user!, except: [:clap]
   before_action :find_story, only: [:edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:clap]
