@@ -4,6 +4,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  # /users/:id/follow
+  resources :users, only: [] do
+    member do
+      post :follow
+    end
+  end
+
   resources :stories do
     member do
       post :clap
