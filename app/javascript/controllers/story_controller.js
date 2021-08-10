@@ -11,8 +11,8 @@ export default class extends Controller {
     let slug = event.currentTarget.dataset.slug
     let target = this.clapCountTarget
     // /stories/:id/clap
-    // JS用反斜線``包起來可在裡面用變數
-    axios.post(`/stories/${slug}/clap`)
+    // JS用反斜線``將$包起來可在裡面用變數
+    axios.post(`/api/stories/${slug}/clap`)
     .then(function (response) {
       let status = response.data.status
       console.log(response)
