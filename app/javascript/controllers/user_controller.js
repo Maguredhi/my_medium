@@ -8,9 +8,19 @@ export default class extends Controller {
     event.preventDefault()
 
     let userId = this.followButtonTarget.dataset.user
+    let button = this.followButtonTarget
 
     axios.post(`/users/${userId}/follow`)
     .then(function (response) {
+      let status = response.data.status
+      switch (status) {
+        case 'sign_in_first':
+          alert('必須先登入')
+          break;
+        default:
+          button.innerHTML = status
+          break;
+      }
       console.log(response.data)
     })
     .catch(function (error) {
