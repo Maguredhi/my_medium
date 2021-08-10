@@ -10,7 +10,7 @@ export default class extends Controller {
     let userId = this.followButtonTarget.dataset.user
     let button = this.followButtonTarget
 
-    axios.post(`/users/${userId}/follow`)
+    axios.post(`/api/users/${userId}/follow`)
     .then(function (response) {
       let status = response.data.status
       switch (status) {
