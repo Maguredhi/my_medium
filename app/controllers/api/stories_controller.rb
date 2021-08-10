@@ -5,7 +5,7 @@ class Api::StoriesController < Api::BaseController
 
   def clap
     # 用 increment! 方法直接對 table 欄位加1
-    story.increment!(:clap)
+    @story.increment!(:clap)
     render json: {status: @story.clap}
   end
 

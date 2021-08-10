@@ -1,18 +1,18 @@
 <section class="columns has-text-centered story-content">
-  <section class="column is-offset-3 is-6">
+  <section class="column is-offset-3 is-6" data-controller="page">
     <h1 class="title"><%= @story.title %></h1>
 
-    <span class="profile" data-controller="user">
+    <span class="profile">
       <%= image_tag @story.user.avatar.variant(resize: '50x50'), class: 'avatar' if @story.user.avatar.attached? %>
       <span class="username"><%= @story.user.username %></span>
-      <%= link_to '#', class: 'follow-button', data: { action: 'user#follow', user: @story.user.id, user_target: 'followButton' } do %>
+      <%= link_to '#', class: 'follow-button', data: { action: 'page#follow', user: @story.user.id, page_target: 'followButton' } do %>
         <%= (user_signed_in? && current_user.follow?(@story.user)) ? 'Followed' : 'Follow' %>
       <% end %>
-      <%= link_to '#', class: 'bookmark-button', data: { action: 'user#bookmark', slug: @story.slug } do %>
+      <%= link_to '#', class: 'bookmark-button', data: { action: 'page#bookmark', slug: @story.slug } do %>
         <% if user_signed_in? && current_user.bookmark?(@story) %>
-          <i class="fas fa-bookmark" data-user-target="bookmark"></i>
+          <i class="fas fa-bookmark" data-page-target="bookmark"></i>
         <% else %>
-          <i class="far fa-bookmark" data-user-target="bookmark"></i>
+          <i class="far fa-bookmark" data-page-target="bookmark"></i>
         <% end %>
       <% end %>
     </span>
@@ -22,10 +22,10 @@
       <p>
         <%= simple_format(@story.content) %>
       </p>
-      <footer data-controller="story">
-        <%= link_to '#', class: 'clapButton is-size-4 has-text-primary', data: { action: 'story#addClap', slug: @story.slug } do %>
+      <footer>
+        <%= link_to '#', class: 'clapButton is-size-4 has-text-primary', data: { action: 'page#addClap', slug: @story.slug } do %>
           <i class="far fa-thumbs-up"></i>
-          <span class="clapCount" data-story-target="clapCount"><%= @story.clap %></span>
+          <span class="clapCount" data-page-target="clapCount"><%= @story.clap %></span>
         <% end %>
       </footer>
     </article>

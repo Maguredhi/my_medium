@@ -2,7 +2,33 @@ import { Controller } from "stimulus"
 import axios from "axios"
 
 export default class extends Controller {
-  static targets = [ "followButton", "bookmark" ]
+  static targets = [ "clapCount", "followButton", "bookmark" ]
+
+  addClap(event) {
+    // 讓原本預設的行為停下來 （初始化）
+    event.preventDefault()
+
+    let slug = event.currentTarget.dataset.slug
+    let target = this.clapCountTarget
+    // /stories/:id/clap
+    // JS用反斜線``將$包起來可在裡面用變數
+    axios.post(`/api/stories/${slug}/clap`)
+         .then(function (response) {
+           let status = response.data.status
+           console.log(response.data)
+           switch (status) {
+             case "sign_in_first":
+               alert('必須先登入');
+               break;
+             default:
+               target.innerHTML = status
+           }
+         })
+         .catch(function (error) {
+           console.log(error)
+         })
+       // this.clapCountTarget.innerHTML = 'test'
+  }
 
   follow(event) {
     event.preventDefault()
