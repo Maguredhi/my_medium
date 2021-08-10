@@ -13,6 +13,7 @@ class Story < ApplicationRecord
   belongs_to :user
   has_one_attached :cover_image
   has_many :comments
+  has_many :bookmarks
 
   # scopes 查詢範圍
   # 預設撈出沒有軟刪除的 story，改用 paranoid gem
