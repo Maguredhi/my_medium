@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_052313) do
+ActiveRecord::Schema.define(version: 2021_08_10_060749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_08_05_052313) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "story_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_bookmarks_on_story_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "story_id", null: false
@@ -53,6 +62,15 @@ ActiveRecord::Schema.define(version: 2021_08_05_052313) do
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["story_id"], name: "index_comments_on_story_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "following_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["following_id"], name: "index_follows_on_following_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -98,7 +116,10 @@ ActiveRecord::Schema.define(version: 2021_08_05_052313) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "stories"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "stories"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "users"
   add_foreign_key "stories", "users"
 end
