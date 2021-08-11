@@ -15,14 +15,14 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4">黃金會員</p>
-              <p class="subtitle is-6">USD 10</p>
+              <p class="title is-4">Gold</p>
+              <p class="subtitle is-6"><%= ENV['price_gold'] %></p>
             </div>
           </div>
           <div class="content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. 
           </div>
-          <%= link_to 'Buy', payment_users_path(type: 'gold'), class: 'button is-warning is-fullwidth' %>
+          <%= link_to 'Buy', payment_users_path(type: 'gold'), class: 'button is-warning is-fullwidth', data: { turbolinks: false } %>
         </div>
       </div>      
     </div>
@@ -42,14 +42,14 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4">白金會員</p>
-              <p class="subtitle is-6">USD 20</p>
+              <p class="title is-4">Platinum</p>
+              <p class="subtitle is-6"><%= ENV['price_platinum'] %></p>
             </div>
           </div>
           <div class="content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
           </div>
-          <%= link_to 'Buy', payment_users_path(type: 'platinum'), class: 'button is-info is-fullwidth' %>
+          <%= link_to 'Buy', payment_users_path(type: 'platinum'), class: 'button is-info is-fullwidth', data: { turbolinks: false } %>
         </div>
       </div>
     </div>

@@ -21,6 +21,8 @@
           <% if user_signed_in? %>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
+                <%= content_tag :i, "", class: 'fas fa-crown has-text-warning' if current_user.gold_user? %>
+                <%= content_tag :i, "", class: 'fas fa-crown has-text-info' if current_user.platinum_user? %>
                 <%= avatar(current_user, size: 50) %>
                 <%= current_user.email %>
               </a>
