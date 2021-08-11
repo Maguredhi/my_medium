@@ -20,7 +20,7 @@
     <article class="content">
       <%= image_tag @story.cover_image.variant(resize: '800x600'), class:'cover_image' if @story.cover_image.attached? %>
       <p>
-        <%= simple_format(@story.content) %>
+        <%= @story.content.html_safe %>
       </p>
       <footer>
         <%= link_to '#', class: 'clapButton is-size-4 has-text-primary', data: { action: 'page#addClap', slug: @story.slug } do %>
