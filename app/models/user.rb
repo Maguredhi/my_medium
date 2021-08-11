@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum role: {
+    user: 0,
+    gold_user: 1,
+    platinum_user: 2,
+    admin: 3
+  }
+
   # validations
   # username 必填，並為唯一值
   validates :username, presence: true, uniqueness: true
@@ -15,6 +22,10 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   # instance method
+  def paid_user?
+    gold_user? or platinum_user?
+  end
+
   def bookmark?(story)
     bookmarks.exists?(story: story)
   end

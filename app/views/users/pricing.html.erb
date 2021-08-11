@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="columns">
+    <div class="column is-4 is-offset-2">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="https://fakeimg.pl/1280x960/?text=gold" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://fakeimg.pl/96x96/?text=CCH" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Gold</p>
+              <p class="subtitle is-6"><%= ENV['price_gold'] %></p>
+            </div>
+          </div>
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. 
+          </div>
+          <%= link_to 'Buy', payment_users_path(type: 'gold'), class: 'button is-warning is-fullwidth', data: { turbolinks: false } %>
+        </div>
+      </div>      
+    </div>
+
+    <div class="column is-4">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="https://fakeimg.pl/1280x960/?text=Platinum" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://fakeimg.pl/96x96/?text=CCH" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">Platinum</p>
+              <p class="subtitle is-6"><%= ENV['price_platinum'] %></p>
+            </div>
+          </div>
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+          </div>
+          <%= link_to 'Buy', payment_users_path(type: 'platinum'), class: 'button is-info is-fullwidth', data: { turbolinks: false } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

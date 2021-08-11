@@ -32,6 +32,8 @@ gem 'aasm', '~> 5.2'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'babosa', '~> 2.0'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
+gem 'figaro', '~> 1.2'
+gem "braintree", "~> 4.3.0"
 
 gem 'pry-rails', '~> 0.3.9'
 gem 'byebug', '~> 11.1', '>= 11.1.3'

@@ -1,0 +1,58 @@
+<div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img src="https://fakeimg.pl/128x128/?text=CCH" alt="Image">
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <strong><%= @payment_type %> (USD <%= @fee %>)</span>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+        </p>
+      </div>
+
+        <%= form_with url: pay_users_path(type: params[:type]), id: 'payment-form', method: 'post', local: true do |form| %>
+          <div id="dropin-container"></div>
+          <%= link_to 'Restart', pricing_users_path, class: 'button is-light' %>
+          <%= form.submit 'Pay', class: 'button is-danger' %>
+          <input type="hidden" id="nonce" name="payment_method_nonce"/>
+        <% end %>
+
+    </div>
+  </article>
+</div>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.31.1/js/dropin.min.js"></script>
+
+<script>
+  document.addEventListener('turbolinks:load', function(event) {
+
+    const form = document.getElementById('payment-form');
+
+    braintree.dropin.create({
+      authorization: '<%= @token %>',
+      container: '#dropin-container'
+    }, (error, dropinInstance) => {
+      if (error) console.error(error);
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+
+        dropinInstance.requestPaymentMethod((error, payload) => {
+          if (error) console.error(error);
+
+          // Step four: when the user is ready to complete their
+          //   transaction, use the dropinInstance to get a payment
+          //   method nonce for the user's selected payment method, then add
+          //   it a the hidden field before submitting the complete form to
+          //   a server-side integration
+          document.getElementById('nonce').value = payload.nonce;
+          form.submit();
+        });
+      });
+    });
+
+  })
+</script>
