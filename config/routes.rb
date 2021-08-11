@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
-    # /api/users/:id/follow
+    # 設定去接圖片的路徑，並導向 utils controller 的 upload_image action
+    post :upload_image, to: 'utils#upload_image'
     resources :users, only: [] do
       member do
+        # /api/users/:id/follow
         post :follow
       end
     end
