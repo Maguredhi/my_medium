@@ -5,7 +5,7 @@
 <% end %>
 
 
-<%= form_with model: story do |form| %>
+<%= form_with model: story, html: { class: 'story-editor' } do |form| %>
   <div class="field">
     <%= image_tag story.cover_image.variant(resize: '800x600'), class: 'cover-image' if story.cover_image.attached? %>
     <%= form.label :cover_image, 'CoverImage' %>
@@ -21,8 +21,14 @@
   </div>
 
   <div class="field">
-    <%= form.submit 'Save Draft', name: 'save_as_draft', class: 'button is-light' %>
+    <% if story.published? %>
+      <%= form.submit 'Update', name: 'save_as_draft', class: 'button is-light' %>
+    <% else %>
+      <%= form.submit 'Save Draft', name: 'save_as_draft', class: 'button is-light' %>
+    <% end %>
     <%= form.submit 'Publish', name: 'publish', class: 'button is-primary' if story.may_publish? %>
     <%= form.submit 'Unpublish', name: 'unpublish', class: 'button is-danger' if story.may_unpublish? %>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'editor' %>
